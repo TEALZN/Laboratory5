@@ -10,28 +10,33 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
-public class EmployeeController
+public class StaffingController
 {
     @javafx.fxml.FXML
     private BorderPane bp;
     @javafx.fxml.FXML
     private TableColumn<Employee, Integer> idTableColumn;
     @javafx.fxml.FXML
-    private TableColumn<Employee, String> lastNameTableColumn;
+    private TableColumn<Employee, LocalDateTime> dateTableColumn;
     @javafx.fxml.FXML
-    private TableColumn<Employee, String> firstNameTableColumn;
+    private TableColumn<Employee, Integer> employeeIdTableColumn;
     @javafx.fxml.FXML
-    private TableColumn<Employee, String> titleTableColumn;
+    private TableColumn<Employee, String> employeeNameTableColumn;
     @javafx.fxml.FXML
-    private TableColumn<Employee, String> birthdayTableColumn;
+    private TableColumn<Employee, String> jobPositionTableColumn;
+    @javafx.fxml.FXML
+    private TableColumn<Employee, String> supervisorNameTableColumn;
+    @javafx.fxml.FXML
+    private TableColumn<Employee, String> assignationTypeTableColumn;
 
     //defino la lista enlazada interna
     private CircularLinkedList EmployeeList;
     private Alert alert; //para el manejo de alertas
     @javafx.fxml.FXML
-    private TableView employeeTableview;
+    private TableView staffAssignmentTableview;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -40,14 +45,17 @@ public class EmployeeController
         alert = util.FXUtility.alert("Employee List", "Display Employee");
         alert.setAlertType(Alert.AlertType.ERROR);
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
-        lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("Last Name"));
-        firstNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("First Name"));
-        birthdayTableColumn.setCellValueFactory(new PropertyValueFactory<>("Birthday"));
-        titleTableColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        employeeIdTableColumn.setCellValueFactory(new PropertyValueFactory<>("EmployeeId"));
+        employeeNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("EmployeeName"));
+        supervisorNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("SupervisorName"));
+        jobPositionTableColumn.setCellValueFactory(new PropertyValueFactory<>("JobPosition"));
+        assignationTypeTableColumn.setCellValueFactory(new PropertyValueFactory<>("AssignationType"));
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
+
         try{
             if(EmployeeList!=null && !EmployeeList.isEmpty()){
                 for(int i=1; i<=EmployeeList.size(); i++) {
-                    employeeTableview.getItems().add((Employee) EmployeeList.getNode(i).data);
+                    staffAssignmentTableview.getItems().add((Employee) EmployeeList.getNode(i).data);
                 }
             }
             //this.EmployeeTableView.setItems(observableList);
@@ -110,11 +118,11 @@ public class EmployeeController
     }
 
     private void updateTableView() throws ListException {
-        this.employeeTableview.getItems().clear(); //clear table
+        this.staffAssignmentTableview.getItems().clear(); //clear table
         this.EmployeeList = util.Utility.getEmployeeList(); //cargo la lista
         if(EmployeeList!=null && !EmployeeList.isEmpty()){
             for(int i=1; i<=EmployeeList.size(); i++) {
-                this.employeeTableview.getItems().add((Employee)EmployeeList.getNode(i).data);
+                this.staffAssignmentTableview.getItems().add((Employee)EmployeeList.getNode(i).data);
             }
         }
     }

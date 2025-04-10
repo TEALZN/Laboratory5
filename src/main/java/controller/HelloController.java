@@ -31,7 +31,7 @@ public class HelloController {
 
     @FXML
     public void Home(ActionEvent actionEvent) {
-        this.txtMessage.setText("Laboratory 4");
+        this.txtMessage.setText("Laboratory 5");
         this.bp.setCenter(ap);
     }
 
@@ -42,22 +42,22 @@ public class HelloController {
 
     @FXML
     public void exampleOnMousePressed(Event event) {
-        this.txtMessage.setText("Loading Example. Please wait!!!");
+        this.txtMessage.setText("Loading. Please wait!!!");
 
     }
 
     @FXML
-    public void studentsOnAction(ActionEvent actionEvent) {
+    public void employeesOnAction(ActionEvent actionEvent) {
         load("employee.fxml");
     }
 
     @FXML
-    public void registerOnAction(ActionEvent actionEvent) {
-        load("register.fxml");
+    public void jobPositionsOnAction(ActionEvent actionEvent) {
+        load("job-position.fxml");
     }
 
     @FXML
-    public void coursesOnAction(ActionEvent actionEvent) {
-        load("course.fxml");
+    public void staffingOnAction(ActionEvent actionEvent) {
+        load("staffing.fxml");
     }
 }
