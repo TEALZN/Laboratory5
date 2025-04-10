@@ -19,6 +19,14 @@ public class Utility {
         employeeList = new CircularLinkedList();
     }
 
+    public static CircularLinkedList getEmployeeList() {
+        return employeeList;
+    }
+
+    public static void setEmployeeList(CircularLinkedList employeeList) {
+        Utility.employeeList = employeeList;
+    }
+
     public static int random(int bound){
         //return (int)Math.floor(Math.random()*bound); //forma 1
         return 1+random.nextInt(bound);
