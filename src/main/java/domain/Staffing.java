@@ -1,6 +1,7 @@
 package domain;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 public class Staffing {
     private int id;
@@ -88,5 +89,34 @@ public class Staffing {
                 ", supervisor='" + supervisor + '\'' +
                 ", assignmentType='" + assignmentType + '\'' +
                 '}';
+    }
+
+    public class Utility {
+        private static Random random;
+        private static CircularLinkedList employeeList;
+        private static CircularDoublyLinkedList jopPosition;
+
+        //constructor estatico, inicializador estatico
+        static {
+            // semilla para el random
+            long seed = System.currentTimeMillis();
+            random = new Random(seed);
+            employeeList = new CircularLinkedList();
+            jopPosition = new CircularDoublyLinkedList();
+        }
+
+        //CircularLinkedList
+        public static CircularLinkedList getEmployeeList() {
+            return employeeList;
+        }
+
+        public static void setEmployeeList(CircularLinkedList employeeList) {
+            Utility.employeeList = employeeList;
+        }
+
+        //CirculaDoublyLinkedList
+        public static CircularDoublyLinkedList getJobPosition() {
+            return jopPosition;
+        }
     }
 }

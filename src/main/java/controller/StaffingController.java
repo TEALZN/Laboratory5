@@ -1,8 +1,6 @@
 package controller;
 
-import domain.CircularLinkedList;
-import domain.ListException;
-import domain.Employee;
+import domain.*;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
@@ -11,10 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-public class StaffingController
-{
+public class StaffingController {
     @javafx.fxml.FXML
     private BorderPane bp;
     @javafx.fxml.FXML
@@ -33,6 +29,7 @@ public class StaffingController
     private TableColumn<Employee, String> assignationTypeTableColumn;
 
     //defino la lista enlazada interna
+    private CircularDoublyLinkedList JobPositionList;
     private CircularLinkedList EmployeeList;
     private Alert alert; //para el manejo de alertas
     @javafx.fxml.FXML
@@ -42,6 +39,8 @@ public class StaffingController
     public void initialize() {
         //cargamos la lista general
         this.EmployeeList = util.Utility.getEmployeeList();
+        this.JobPositionList = util.Utility.getJobPosition();
+
         alert = util.FXUtility.alert("Employee List", "Display Employee");
         alert.setAlertType(Alert.AlertType.ERROR);
         idTableColumn.setCellValueFactory(new PropertyValueFactory<>("Id"));
@@ -52,14 +51,19 @@ public class StaffingController
         assignationTypeTableColumn.setCellValueFactory(new PropertyValueFactory<>("AssignationType"));
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
 
-        try{
-            if(EmployeeList!=null && !EmployeeList.isEmpty()){
-                for(int i=1; i<=EmployeeList.size(); i++) {
+        try {
+            if (EmployeeList != null && !EmployeeList.isEmpty()) {
+                for (int i = 1; i <= EmployeeList.size(); i++) {
                     staffAssignmentTableview.getItems().add((Employee) EmployeeList.getNode(i).data);
                 }
             }
+            if (JobPositionList != null && !JobPositionList.isEmpty()) {
+                for (int i = 1; i <= JobPositionList.size(); i++) {
+                    staffAssignmentTableview.getItems().add((JobPosition) JobPositionList.getNode(i).data);
+                }
+            }
             //this.EmployeeTableView.setItems(observableList);
-        }catch(ListException ex){
+        } catch (ListException ex) {
             alert.setContentText("Employee list is empty");
             alert.showAndWait();
         }
@@ -68,8 +72,10 @@ public class StaffingController
     @javafx.fxml.FXML
     public void clearOnAction(ActionEvent actionEvent) {
         this.EmployeeList.clear();
-        util.Utility.setEmployeeList(this.EmployeeList); //actualizo la lista general
-        this.alert.setContentText("The list was deleted");
+        this.JobPositionList.clear();
+        util.Utility.setEmployeeList(this.EmployeeList);
+        util.Utility.setJobPosition(this.JobPositionList); //actualizo la lista general
+        this.alert.setContentText("The list is clear");
         this.alert.setAlertType(Alert.AlertType.INFORMATION);
         this.alert.showAndWait();
         try {
@@ -92,10 +98,6 @@ public class StaffingController
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "addEmployee.fxml", bp);
     }
 
-    @javafx.fxml.FXML
-    public void addFirstOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addFirstEmployee.fxml", bp);
-    }
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) {
@@ -110,19 +112,24 @@ public class StaffingController
     }
 
     @javafx.fxml.FXML
-    public void removeFirstOnAction(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
     public void getLastOnAction(ActionEvent actionEvent) {
     }
 
     private void updateTableView() throws ListException {
         this.staffAssignmentTableview.getItems().clear(); //clear table
         this.EmployeeList = util.Utility.getEmployeeList(); //cargo la lista
-        if(EmployeeList!=null && !EmployeeList.isEmpty()){
-            for(int i=1; i<=EmployeeList.size(); i++) {
-                this.staffAssignmentTableview.getItems().add((Employee)EmployeeList.getNode(i).data);
+        this.JobPositionList = util.Utility.getJobPosition();
+        //Carga la lista de empleados
+        if (EmployeeList != null && !EmployeeList.isEmpty()) {
+            for (int i = 1; i <= EmployeeList.size(); i++) {
+                this.staffAssignmentTableview.getItems().add((Employee) EmployeeList.getNode(i).data);
+            }
+        }
+
+        //Carga la lista de posiciones
+        if (JobPositionList != null && !JobPositionList.isEmpty()) {
+            for (int i = 1; i <= JobPositionList.size(); i++) {
+                this.staffAssignmentTableview.getItems().add((JobPosition) JobPositionList.getNode(i).data);
             }
         }
     }
