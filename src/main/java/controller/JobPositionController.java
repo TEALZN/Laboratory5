@@ -1,14 +1,19 @@
 package controller;
 
 import domain.CircularLinkedList;
+import domain.JobPosition;
 import domain.ListException;
 import domain.Employee;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+
+import java.util.Optional;
 
 public class JobPositionController
 {
@@ -28,11 +33,13 @@ public class JobPositionController
     //defino la lista enlazada interna
     private CircularLinkedList EmployeeList;
     private Alert alert; //para el manejo de alertas
+
     @javafx.fxml.FXML
     private TableView jobPositionTableview;
 
     @javafx.fxml.FXML
     public void initialize() {
+
         //cargamos la lista general
         this.EmployeeList = util.Utility.getEmployeeList();
         alert = util.FXUtility.alert("Employee List", "Display Employee");
@@ -42,6 +49,8 @@ public class JobPositionController
         hourlyWageTableColumn.setCellValueFactory(new PropertyValueFactory<>("HourlyWage"));
         monthlyWageTableColumn.setCellValueFactory(new PropertyValueFactory<>("MonthlyWage"));
         totalHoursTableColumn.setCellValueFactory(new PropertyValueFactory<>("TotalHours"));
+
+
         try{
             if(EmployeeList!=null && !EmployeeList.isEmpty()){
                 for(int i=1; i<=EmployeeList.size(); i++) {
@@ -53,10 +62,12 @@ public class JobPositionController
             alert.setContentText("Employee list is empty");
             alert.showAndWait();
         }
+
     }
 
     @javafx.fxml.FXML
     public void clearOnAction(ActionEvent actionEvent) {
+
         this.EmployeeList.clear();
         util.Utility.setEmployeeList(this.EmployeeList); //actualizo la lista general
         this.alert.setContentText("The list was deleted");
@@ -67,54 +78,165 @@ public class JobPositionController
         } catch (ListException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    @FXML
+    void addSortedOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void addFirstOnAction(ActionEvent event) {
+
     }
 
     @javafx.fxml.FXML
     public void containsOnAction(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Contains Element");
+        dialog.setHeaderText("Enter the element to check:");
+        dialog.setContentText("Element:");
+
+        dialog.showAndWait().ifPresent(elementToCheck -> {
+            try {
+                boolean contains = EmployeeList.contains(elementToCheck);
+                alert.setContentText("Does the list contain '" + elementToCheck + "'? " + (contains ? "Yes" : "No"));
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+            } catch (ListException e) {
+                alert.setContentText("Error: " + e.getMessage());
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.showAndWait();
+            }
+        });
     }
+
+
 
     @javafx.fxml.FXML
     public void sizeOnAction(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        try {
+            int size = EmployeeList.size();
+            alert.setContentText("The size of the list is: " + size);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        } catch (ListException e) {
+            alert.setContentText("Error: " + e.getMessage());
+            alert.setAlertType(Alert.AlertType.ERROR);
+
+
+        }
     }
 
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addEmployee.fxml", bp);
-    }
 
-    @javafx.fxml.FXML
-    public void addFirstOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addFirstEmployee.fxml", bp);
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "JobPositionAddController", bp);
     }
 
     @javafx.fxml.FXML
     public void removeOnAction(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Remove Element");
+        dialog.setHeaderText("Enter the element to remove:");
+        dialog.setContentText("Element:");
+
+        dialog.showAndWait().ifPresent(elementToRemove -> {
+            try {
+                EmployeeList.remove(elementToRemove);
+                alert.setContentText("Element '" + elementToRemove + "' has been removed (if it existed).");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.showAndWait();
+            } catch (ListException e) {
+                alert.setContentText("Error: " + e.getMessage());
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.showAndWait();
+            }
+        });
+
     }
 
-    @javafx.fxml.FXML
-    public void addSortedOnAction(ActionEvent actionEvent) {
-    }
 
     @javafx.fxml.FXML
     public void getFirstOnAction(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        try {
+            Object firstElement = EmployeeList.getFirst();
+            alert.setContentText("The first element is: " + firstElement);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        } catch (ListException e) {
+            alert.setContentText("Error: " + e.getMessage());
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
+
     }
 
     @javafx.fxml.FXML
     public void removeFirstOnAction(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        try {
+            Object removedElement = EmployeeList.removeFirst();
+            alert.setContentText("The first element '" + removedElement + "' has been removed.");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        } catch (ListException e) {
+            alert.setContentText("Error: " + e.getMessage());
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
+
     }
 
     @javafx.fxml.FXML
     public void getLastOnAction(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        try {
+            Object lastElement = EmployeeList.getLast();
+            alert.setContentText("The last element is: " + lastElement);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.showAndWait();
+        } catch (ListException e) {
+            alert.setContentText("Error: " + e.getMessage());
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.showAndWait();
+        }
+
     }
 
     private void updateTableView() throws ListException {
+
         this.jobPositionTableview.getItems().clear(); //clear table
         this.EmployeeList = util.Utility.getEmployeeList(); //cargo la lista
         if(EmployeeList!=null && !EmployeeList.isEmpty()){
+
             for(int i=1; i<=EmployeeList.size(); i++) {
+
                 this.jobPositionTableview.getItems().add((Employee)EmployeeList.getNode(i).data);
+
             }
+
         }
+
     }
 
 }

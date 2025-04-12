@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Random;
+
 public class CircularDoublyLinkedList implements List {
     private Node first; //apuntador al inicio de la lista
     private Node last; //apuntador al ultimo nodo de la lista
@@ -25,11 +27,13 @@ public class CircularDoublyLinkedList implements List {
 
     @Override
     public void clear() {
+
         this.first = this.last = null; //anula la lista
     }
 
     @Override
     public boolean isEmpty() {
+
         return first == null;
     }
 
@@ -82,6 +86,7 @@ public class CircularDoublyLinkedList implements List {
 
     @Override
     public void addLast(Object element) {
+
         add(element);
     }
 
@@ -270,4 +275,6 @@ public class CircularDoublyLinkedList implements List {
         //agregamos la info del último nodo
         return result+aux.data;
     }
+
+
 }
