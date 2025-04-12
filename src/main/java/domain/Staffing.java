@@ -91,18 +91,19 @@ public class Staffing {
                 '}';
     }
 
-    public class Utility {
+    public static class Utility {
         private static Random random;
         private static CircularLinkedList employeeList;
-        private static CircularDoublyLinkedList jopPosition;
+        private static CircularDoublyLinkedList jobPosition;
 
         //constructor estatico, inicializador estatico
         static {
             // semilla para el random
             long seed = System.currentTimeMillis();
+
             random = new Random(seed);
             employeeList = new CircularLinkedList();
-            jopPosition = new CircularDoublyLinkedList();
+            jobPosition = new CircularDoublyLinkedList();
         }
 
         //CircularLinkedList
@@ -115,8 +116,14 @@ public class Staffing {
         }
 
         //CirculaDoublyLinkedList
-        public static CircularDoublyLinkedList getJobPosition() {
-            return jopPosition;
+        public static CircularDoublyLinkedList getJobPositionList() {
+            return jobPosition;
         }
+
+        public static void setJobPositionList(CircularDoublyLinkedList jobPosition) {
+            Utility.jobPosition = jobPosition;
+        }
+
+
     }
 }

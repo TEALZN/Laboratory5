@@ -11,7 +11,7 @@ import java.util.Random;
 public class Utility {
     private static Random random;
     private static CircularLinkedList employeeList;
-    private static CircularDoublyLinkedList jobPosition;
+    private static CircularDoublyLinkedList jobPositionList;
 
     //constructor estatico, inicializador estatico
     static {
@@ -31,12 +31,12 @@ public class Utility {
     }
 
     //CircularDoublyLinkedList
-    public static CircularDoublyLinkedList getJobPosition() {
-        return jobPosition;
+    public static CircularDoublyLinkedList getJobPositionList() {
+        return jobPositionList;
     }
 
-    public static void setJobPosition(CircularDoublyLinkedList jobPosition) {
-        Utility.jobPosition = jobPosition;
+    public static void setJobPositionList(CircularDoublyLinkedList jobPositionList) {
+        Utility.jobPositionList = jobPositionList;
     }
 
     public static int random(int bound) {

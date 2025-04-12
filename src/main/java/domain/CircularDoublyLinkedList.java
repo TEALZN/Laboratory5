@@ -97,7 +97,7 @@ public class CircularDoublyLinkedList implements List {
         //Caso 1: El elemento a suprimir es el primero de la lista
         if(util.Utility.compare(first.data, element)==0)
             first = first.next;
-        //Caso 2. El elemento puede estar en el medio o al final
+            //Caso 2. El elemento puede estar en el medio o al final
         else{
             Node prev = first; //nodo anterior
             Node aux = first.next; //nodo sgte
