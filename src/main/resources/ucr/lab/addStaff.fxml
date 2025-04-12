@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddStaffingController">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Pane prefHeight="96.0" prefWidth="604.0" style="-fx-background-color: #fe6962;">
+               <children>
+                  <Label layoutX="222.0" layoutY="23.0" text="Add Staff">
+                     <font>
+                        <Font name="System Bold" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="-3.0" layoutY="348.0" prefHeight="51.0" prefWidth="606.0" style="-fx-background-color: #fe6962;">
+               <children>
+                  <ButtonBar layoutX="166.0" layoutY="6.0" prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                      <Button fx:id="add" mnemonicParsing="false" onAction="#addAction" text="Add" />
+                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#cleanOnAction" text="Clean" />
+                        <Button fx:id="close" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeOnAction" text="Close" />
+                    </buttons>
+                  </ButtonBar>
+               </children>
+            </Pane>
+            <TextField fx:id="id" layoutX="300.0" layoutY="111.0" prefHeight="26.0" prefWidth="56.0" />
+            <Label layoutX="202.0" layoutY="113.0" text="Register Id :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="241.0" layoutY="156.0" text="Date :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="date" layoutX="302.0" layoutY="154.0" />
+            <Label layoutX="144.0" layoutY="200.0" text="Select an Employee :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="138.0" layoutY="236.0" text="Select a Job Position :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="150.0" layoutY="271.0" text="Select a Supervisor :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="137.0" layoutY="309.0" text="Select an Assig. Type :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="employeeBox" layoutX="300.0" layoutY="198.0" prefHeight="26.0" prefWidth="293.0" />
+            <ComboBox fx:id="jobBox" layoutX="300.0" layoutY="233.0" prefHeight="26.0" prefWidth="293.0" />
+            <ComboBox fx:id="supervisorBox" layoutX="300.0" layoutY="268.0" prefHeight="26.0" prefWidth="293.0" />
+            <ComboBox fx:id="assigBox" layoutX="300.0" layoutY="306.0" prefHeight="26.0" prefWidth="157.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

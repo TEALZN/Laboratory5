@@ -48,6 +48,7 @@ public class HelloController {
 
     @FXML
     public void employeesOnAction(ActionEvent actionEvent) {
+
         load("employee.fxml");
     }
 
@@ -58,6 +59,7 @@ public class HelloController {
 
     @FXML
     public void staffingOnAction(ActionEvent actionEvent) {
+
         load("staffing.fxml");
     }
 }

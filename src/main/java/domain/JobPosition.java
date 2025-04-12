@@ -1,16 +1,20 @@
 package domain;
 
+import java.util.Random;
+
 public class JobPosition {
     private int id;
     private String description;
     private double hourlyWage;
+    private double totalHours;
     private static int autoId;
 
     //Constructor 1
-    public JobPosition(int id, String description, double hourlyWage) {
+    public JobPosition(int id, String description, double hourlyWage , double totalHours) {
         this.id = id;
         this.description = description;
         this.hourlyWage = hourlyWage;
+        this.totalHours = totalHours;
     }
 
     //Constructor 2
@@ -22,30 +26,37 @@ public class JobPosition {
 
     //Constructor 3
     public JobPosition(int id) {
+
         this.id = id;
     }
 
     public int getId() {
+
         return id;
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public void setDescription(String description) {
+
         this.description = description;
     }
 
     public double getHourlyWage() {
+
         return hourlyWage;
     }
 
     public void setHourlyWage(double hourlyWage) {
+
         this.hourlyWage = hourlyWage;
     }
 
@@ -54,6 +65,7 @@ public class JobPosition {
     }
 
     public static void setAutoId(int autoId) {
+
         JobPosition.autoId = autoId;
     }
 
@@ -61,8 +73,19 @@ public class JobPosition {
         return n * hourlyWage;
     }
 
+    public double getTotalHours() {
+        return totalHours;
+    }
+
+    public void setTotalHours(double totalHours) {
+        this.totalHours = totalHours;
+    }
+
     @Override
     public String toString() {
+
         return  "(ID)"+id+"/(Job Position)"+description +" /(HourlyWage)"+ hourlyWage;
+
     }
+
 }

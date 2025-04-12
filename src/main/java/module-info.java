@@ -12,4 +12,6 @@ module ucr.lab {
     /*Sin este código no carga los tableviews de Student, Course, Register*/
     opens domain to javafx.fxml;
     exports domain;
+    exports util;
+    opens util to javafx.fxml;
 }

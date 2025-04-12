@@ -43,17 +43,17 @@
                         <ButtonBar layoutX="1.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
                             <buttons>
                                 <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#sizeOnAction" text="Size" />
-                                <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#addSortedOnAction" text="Sort Assig Type" />
+                                <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortAssigOnAction" text="Sort Assig Type" />
                                 <Button mnemonicParsing="false" onAction="#removeOnAction" text="Remove" />
-                                <Button mnemonicParsing="false" onAction="#addOnAction" text="Add" />
+                                <Button mnemonicParsing="false" onAction="#addAction" text="Add" />
                             </buttons>
                         </ButtonBar>
                         <ButtonBar layoutY="57.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
                             <buttons>
                                 <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#clearOnAction" text="Clear" />
-                                <Button layoutX="104.0" layoutY="17.0" mnemonicParsing="false" onAction="#getLastOnAction" text="Sort Job Posit" />
-                                <Button mnemonicParsing="false" onAction="#getFirstOnAction" text="Sort Empl Name " />
-                                <Button mnemonicParsing="false" onAction="#addFirstOnAction" text="Sort Empl Id" />
+                                <Button layoutX="104.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortJobOnAction" text="Sort Job Posit" />
+                                <Button mnemonicParsing="false" onAction="#sortNameOnAction" text="Sort Empl Name " />
+                                <Button mnemonicParsing="false" onAction="#sortIdOnAction" text="Sort Empl Id" />
                             </buttons>
                         </ButtonBar>
                     </children>
