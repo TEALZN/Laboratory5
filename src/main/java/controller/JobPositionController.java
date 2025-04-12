@@ -79,7 +79,7 @@ public class JobPositionController
 
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addEmployee.fxml", bp);
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "job-positionAdd.fxml", bp);
     }
 
     @javafx.fxml.FXML

@@ -42,18 +42,18 @@
                     <buttons>
                         <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#sizeOnAction" text="Size" />
                         <Button layoutX="685.0" layoutY="17.0" mnemonicParsing="false" onAction="#containsOnAction" text="Contains" />
-                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#addSortedOnAction" text="Sort by Name" />
-                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#addFirstOnAction" text="Sort by Id" />
+                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortNameOnAction" text="Sort by Name" />
+                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortIdOnAction" text="Sort by Id" />
                       <Button mnemonicParsing="false" onAction="#addOnAction" text="Add" />
                     </buttons>
                   </ButtonBar>
                   <ButtonBar layoutY="57.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
                     <buttons>
                         <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#clearOnAction" text="Clear" />
-                        <Button layoutX="125.0" layoutY="17.0" mnemonicParsing="false" onAction="#removeFirstOnAction" text="Remove Last" />
+                        <Button layoutX="125.0" layoutY="17.0" mnemonicParsing="false" onAction="#removeLastOnAction" text="Remove Last" />
                         <Button layoutX="525.0" layoutY="17.0" mnemonicParsing="false" onAction="#removeOnAction" text="Remove" />
-                        <Button layoutX="104.0" layoutY="17.0" mnemonicParsing="false" onAction="#getLastOnAction" text="Get Next" />
-                      <Button mnemonicParsing="false" onAction="#getFirstOnAction" text="Get Prev" />
+                        <Button layoutX="104.0" layoutY="17.0" mnemonicParsing="false" onAction="#getNextOnAction" text="Get Next" />
+                      <Button mnemonicParsing="false" onAction="#getPrevOnAction" text="Get Prev" />
                     </buttons>
                   </ButtonBar>
                </children>

@@ -36,11 +36,12 @@ public class AddEmployeeController {
     @javafx.fxml.FXML
     public void initialize() {
         try {
-            // Inicializar la lista de empleados (si es necesario)
-            CircularLinkedList employeeList = util.Utility.getEmployeeList();
+            // Inicializar componentes
+            datePicker.setValue(LocalDate.now()); // Fecha actual por defecto
+            idEmployeeTextField.setPromptText("Ingrese ID numérico");
 
-            // Inicializar componentes adicionales si es necesario
-            datePicker.setValue(LocalDate.now()); // Establecer fecha actual por defecto
+            // Inicializar lista (aunque no se usa directamente aquí)
+            this.employeeList = util.Utility.getEmployeeList();
 
         } catch (Exception e) {
             util.FXUtility.alert("Error", "Error al inicializar: " + e.getMessage())
@@ -49,49 +50,51 @@ public class AddEmployeeController {
     }
 
     @javafx.fxml.FXML
-    public void onKeyTypeAgeValidation(Event event) {
-    }
-
-    @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) {
         try {
-            // Validar campos
+            // 1. Validar campos
             if (idEmployeeTextField.getText().isEmpty() ||
                     lastNameTextField.getText().isEmpty() ||
-                    firstNameTextField.getText().isEmpty() ||
-                    datePicker.getValue() == null) {
+                    firstNameTextField.getText().isEmpty()) {
 
-                FXUtility.alert("Error", "Por favor complete todos los campos");
+                showAlert(Alert.AlertType.ERROR, "Error", "Complete todos los campos");
                 return;
             }
 
-            // Obtener valores
-            Integer id = Integer.valueOf(idEmployeeTextField.getText());
-            String lastName = lastNameTextField.getText();
-            String firstName = firstNameTextField.getText();
-            String title = titleTextField.getText();
-            LocalDate localDate = datePicker.getValue();
-            Date birthday = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            // 2. Crear empleado
+            Employee newEmployee = new Employee(
+                    Integer.valueOf(idEmployeeTextField.getText()),
+                    lastNameTextField.getText(),
+                    firstNameTextField.getText(),
+                    titleTextField.getText(),
+                    Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant())
+            );
 
-            // Crear nuevo empleado
-            Employee newEmployee = new Employee(id, lastName, firstName, title, birthday);
+            // 3. Agregar a lista
+            util.Utility.getEmployeeList().add(newEmployee);
 
-            // Agregar a la lista
-            CircularLinkedList employeeList = util.Utility.getEmployeeList();
-            if (employeeList != null) {
-                employeeList.add(newEmployee);
-                FXUtility.alert("Éxito", "Empleado agregado correctamente");
+            // 4. Mostrar confirmación
+            showAlert(Alert.AlertType.INFORMATION, "Éxito", "Empleado agregado");
 
-                // Cerrar la ventana
-                Stage stage = (Stage) addButton.getScene().getWindow();
-                stage.close();
-            }
-        } catch (NumberFormatException e) {
-            FXUtility.alert("Error", "El ID debe ser numérico");
+            // 5. Cerrar ventana ACTUAL
+            Stage currentStage = (Stage) addButton.getScene().getWindow();
+            currentStage.close();
+
         } catch (Exception e) {
-            FXUtility.alert("Error", "Ocurrió un error: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
+
+    // Método auxiliar para alertas
+    private void showAlert(Alert.AlertType type, String title, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
 
     @javafx.fxml.FXML
     public void clearOnAction(ActionEvent actionEvent) {

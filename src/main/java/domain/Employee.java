@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Objects;
 
-    public class Employee {
+public class Employee {
         private int id;
         private String lastName;
         private String firstName;
@@ -93,4 +94,18 @@ import java.util.Date;
                     +"/(Age)"+ getAge(birthday);
 
         }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && Objects.equals(lastName, employee.lastName) && Objects.equals(firstName, employee.firstName) && Objects.equals(title, employee.title) && Objects.equals(birthday, employee.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, lastName, firstName, title, birthday);
+    }
+
+
 }
