@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
 
@@ -30,18 +29,17 @@ public class AddStaffingController implements Initializable {
     private ComboBox<String> assigBox; // fx:id="assigBox"
     @FXML
     private Button add; // fx:id="add" con onAction="#addOnAction" (¡Ojo con el nombre!)
-    @FXML
-    private Button clean; // No tiene fx:id en el FXML que proporcionaste
-    @FXML
-    private Button close; // No tiene fx:id en el FXML que proporcionaste
 
     private CircularLinkedList employeeList;
     private CircularDoublyLinkedList jobPositionList;
     private Staffing result;
     private StaffingController staffingController;
-    private BorderPane mainBorderPane; // Referencia al BorderPane principal
+    private BorderPane bp; // Referencia al BorderPane principal
+    @FXML
+    private Button close;
 
     @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         result = null;
         configureComboBoxes();
@@ -52,11 +50,13 @@ public class AddStaffingController implements Initializable {
 
         // Establecer el ID inicial basado en el tamaño de la lista en StaffingController
         if (staffingController != null && staffingController.getStaffingList() != null) {
+
             try {
                 id.setText(String.valueOf(staffingController.getStaffingList().size() + 1));
             } catch (ListException e) {
-                id.setText("1"); // Si hay un error al obtener el tamaño, empezar en 1
+                throw new RuntimeException(e);
             }
+
         } else {
             id.setText("1"); // Valor por defecto si staffingController o la lista son null
         }
@@ -82,14 +82,14 @@ public class AddStaffingController implements Initializable {
 
     public void setStaffingController(StaffingController controller) {
         this.staffingController = controller;
-        this.mainBorderPane = controller.getBorderPane(); // Obtener la referencia al BorderPane
+        this.bp = controller.getBorderPane(); // Obtener la referencia al BorderPane
     }
 
     private <T> void populateComboBox(ComboBox<T> comboBox, CircularLinkedList list, String type) {
         comboBox.getItems().clear();
 
         if (list == null || list.isEmpty()) {
-            showAlert("Info", "No " + type + "s available", Alert.AlertType.INFORMATION);
+            //showAlert("Info", "No " + type + "s available", Alert.AlertType.INFORMATION);
             return;
         }
 
@@ -110,7 +110,7 @@ public class AddStaffingController implements Initializable {
         comboBox.getItems().clear();
 
         if (list == null || list.isEmpty()) {
-            showAlert("Info", "No " + type + "s available", Alert.AlertType.INFORMATION);
+            //showAlert("Info", "No " + type + "s available", Alert.AlertType.INFORMATION);
             return;
         }
 
@@ -171,7 +171,7 @@ public class AddStaffingController implements Initializable {
 
     @FXML
     private void cleanOnAction(ActionEvent actionEvent) {
-        id.clear();
+
         employeeBox.setValue(null);
         jobBox.setValue(null);
         supervisorBox.setValue(null);
@@ -185,11 +185,11 @@ public class AddStaffingController implements Initializable {
     }
 
     private void returnToStaffingView() {
-        if (mainBorderPane != null && staffingController != null) {
-            util.FXUtility.loadPage(staffingController.getClass().getName(), "staffing.fxml", mainBorderPane);
+        if (bp != null && staffingController != null) {
+            util.FXUtility.loadPage("ucr.lab.HelloApplication", "staffing.fxml", bp);
             staffingController.loadStaffingData(); // Recargar los datos en la tabla
         }
-        // No cerramos la ventana, solo volvemos a la vista principal
+
     }
 
     private boolean validateInput() {
@@ -267,7 +267,38 @@ public class AddStaffingController implements Initializable {
     }
 
     @FXML
-    public void addOnAction(ActionEvent actionEvent) { // Este método ahora vuelve a la vista principal
-        returnToStaffingView();
+    public void addAction(ActionEvent actionEvent) {
+        if (!validateInput()) {
+            return;
+        }
+
+        try {
+            int staffingId = Integer.parseInt(id.getText());
+            Employee selectedEmployee = employeeBox.getValue();
+            JobPosition selectedJobPosition = jobBox.getValue();
+            String supervisorName = supervisorBox.getValue();
+            String assignmentType = assigBox.getValue();
+            LocalDate selectedDate = date.getValue();
+
+            Staffing newStaffing = new Staffing(
+                    staffingId,
+                    selectedDate.atStartOfDay(),
+                    selectedEmployee.getId(),
+                    selectedEmployee.getFirstName() + " " + selectedEmployee.getLastName(),
+                    selectedJobPosition.getDescription(),
+                    supervisorName,
+                    assignmentType
+            );
+
+            if (staffingController != null) {
+                staffingController.addStaffing(newStaffing);
+                returnToStaffingView(); // Volver a la vista principal y recargar datos
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Invalid ID format. Please enter a number.", Alert.AlertType.ERROR);
+        } catch (Exception e) {
+            showAlert("Error", "Failed to create staffing record: " + e.getMessage(),
+                    Alert.AlertType.ERROR);
+        }
     }
 }

@@ -27,9 +27,9 @@
                <children>
                   <ButtonBar layoutX="166.0" layoutY="6.0" prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                      <Button fx:id="add" mnemonicParsing="false" onAction="#addOnAction" text="Add" />
+                      <Button fx:id="add" mnemonicParsing="false" onAction="#addAction" text="Add" />
                         <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#cleanOnAction" text="Clean" />
-                        <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeOnAction" text="Close" />
+                        <Button fx:id="close" layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#closeOnAction" text="Close" />
                     </buttons>
                   </ButtonBar>
                </children>

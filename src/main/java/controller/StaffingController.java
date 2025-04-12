@@ -116,11 +116,6 @@ public class StaffingController implements Initializable {
         alert.showAndWait();
     }
 
-    @javafx.fxml.FXML
-    public void addOnAction(ActionEvent actionEvent) {
-        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addStaff.fxml", bp);
-    }
-
     @FXML
     public void removeOnAction(ActionEvent actionEvent) {
         Staffing selectedStaffing = staffAssignmentTableview.getSelectionModel().getSelectedItem();
@@ -156,6 +151,10 @@ public class StaffingController implements Initializable {
     }
 
     @FXML
+    public void addAction(ActionEvent actionEvent) {
+        util.FXUtility.loadPage("ucr.lab.HelloApplication", "addStaff.fxml", bp);
+    }
+    @FXML
     public void sortAssigOnAction(ActionEvent actionEvent) {
         FXCollections.sort(staffAssignmentTableview.getItems(), Comparator.comparing(Staffing::getAssignmentType));
     }
@@ -174,4 +173,6 @@ public class StaffingController implements Initializable {
     public void sortIdOnAction(ActionEvent actionEvent) {
         FXCollections.sort(staffAssignmentTableview.getItems(), Comparator.comparingInt(Staffing::getEmployeeId));
     }
+
+
 }

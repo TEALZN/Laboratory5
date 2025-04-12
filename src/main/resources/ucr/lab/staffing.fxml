@@ -45,7 +45,7 @@
                                 <Button layoutX="202.0" layoutY="17.0" mnemonicParsing="false" onAction="#sizeOnAction" text="Size" />
                                 <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#sortAssigOnAction" text="Sort Assig Type" />
                                 <Button mnemonicParsing="false" onAction="#removeOnAction" text="Remove" />
-                                <Button mnemonicParsing="false" onAction="#addOnAction" text="Add" />
+                                <Button mnemonicParsing="false" onAction="#addAction" text="Add" />
                             </buttons>
                         </ButtonBar>
                         <ButtonBar layoutY="57.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="761.0">
