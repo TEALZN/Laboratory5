@@ -4,12 +4,20 @@ import domain.CircularLinkedList;
 import domain.ListException;
 import domain.Employee;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import util.FXUtility;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Date;
 
 public class EmployeeController
@@ -79,6 +87,14 @@ public class EmployeeController
     public void sizeOnAction(ActionEvent actionEvent) {
     }
 
+    public void setParentController(EmployeeController controller) {
+        // No necesita implementación, solo para mantener la referencia
+    }
+
+    public void setParentReference(EmployeeController controller) {
+        // No necesita implementación
+    }
+
     @javafx.fxml.FXML
     public void addOnAction(ActionEvent actionEvent) {
         util.FXUtility.loadPage("ucr.lab.HelloApplication", "addEmployee.fxml", bp);
@@ -109,12 +125,12 @@ public class EmployeeController
     public void getLastOnAction(ActionEvent actionEvent) {
     }
 
-    private void updateTableView() throws ListException {
-        this.employeeTableview.getItems().clear(); //clear table
-        this.EmployeeList = util.Utility.getEmployeeList(); //cargo la lista
+    public void updateTableView() throws ListException {
+        this.employeeTableview.getItems().clear();
+        this.EmployeeList = util.Utility.getEmployeeList();
         if(EmployeeList!=null && !EmployeeList.isEmpty()){
             for(int i=1; i<=EmployeeList.size(); i++) {
-                this.employeeTableview.getItems().add((Employee)EmployeeList.getNode(i).data);
+                this.employeeTableview.getItems().add(EmployeeList.getNode(i).data);
             }
         }
     }

@@ -20,6 +20,7 @@ public class FXUtility {
         }
     }
 
+
     public static Alert alert(String title, String header){
         Alert myalert = new Alert(Alert.AlertType.NONE);
         myalert.setAlertType(Alert.AlertType.ERROR);
@@ -34,3 +35,4 @@ public class FXUtility {
         return dialog;
     }
 }
+

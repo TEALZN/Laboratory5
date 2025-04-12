@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="482.0" prefWidth="600.0" style="-fx-background-color: #5dade2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddEmployeeController">
+    <children>
+        <Pane layoutY="-1.0" prefHeight="94.0" prefWidth="600.0" style="-fx-background-color: #fe6962;">
+            <children>
+                <Label layoutX="152.0" layoutY="26.0" prefHeight="42.0" prefWidth="297.0" text="Add Employees">
+                    <font>
+                        <Font name="Arial" size="36.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <Pane layoutX="23.0" layoutY="93.0" prefHeight="374.0" prefWidth="554.0">
+            <children>
+                <Label layoutX="26.0" layoutY="14.0" prefHeight="54.0" prefWidth="188.0" text="Employee ID:">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="idEmployeeTextField" layoutX="225.0" layoutY="14.0" prefHeight="54.0" prefWidth="174.0" />
+                <Label layoutX="21.0" layoutY="72.0" prefHeight="42.0" prefWidth="198.0" text="Last Name: ">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+                <Label layoutX="21.0" layoutY="126.0" prefHeight="42.0" prefWidth="198.0" text="First Name:">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+                <Label layoutX="21.0" layoutY="180.0" prefHeight="42.0" prefWidth="198.0" text="Title:">
+                    <font>
+                        <Font name="Arial" size="25.0" />
+                    </font>
+                </Label>
+                <Button fx:id="addButton" layoutX="26.0" layoutY="321.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="26.0" prefWidth="103.0" text="Add">
+                    <font>
+                        <Font name="Arial" size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="clearButton" layoutX="174.0" layoutY="321.0" mnemonicParsing="false" onAction="#clearOnAction" prefHeight="26.0" prefWidth="103.0" text="Clear">
+                    <font>
+                        <Font name="Arial" size="20.0" />
+                    </font>
+                </Button>
+                <Button fx:id="closeButton" layoutX="336.0" layoutY="321.0" mnemonicParsing="false" onAction="#closeOnAction" prefHeight="26.0" prefWidth="103.0" text="Close">
+                    <font>
+                        <Font name="Arial" size="20.0" />
+                    </font>
+                </Button>
+            <TextField fx:id="lastNameTextField" layoutX="225.0" layoutY="66.0" prefHeight="54.0" prefWidth="303.0" />
+            <TextField fx:id="firstNameTextField" layoutX="225.0" layoutY="120.0" prefHeight="54.0" prefWidth="303.0" />
+            <TextField fx:id="titleTextField" layoutX="225.0" layoutY="174.0" prefHeight="54.0" prefWidth="303.0" />
+            <DatePicker fx:id="datePicker" layoutX="225.0" layoutY="228.0" prefHeight="54.0" prefWidth="174.0" />
+            <Label layoutX="21.0" layoutY="234.0" prefHeight="42.0" prefWidth="198.0" text="Birthday:">
+               <font>
+                  <Font name="Arial" size="25.0" />
+               </font>
+            </Label>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
