@@ -14,6 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 
 import java.util.Optional;
+import java.util.Random;
+
+import static util.Utility.random;
 
 public class JobPositionController
 {
@@ -50,15 +53,20 @@ public class JobPositionController
         monthlyWageTableColumn.setCellValueFactory(new PropertyValueFactory<>("MonthlyWage"));
         totalHoursTableColumn.setCellValueFactory(new PropertyValueFactory<>("TotalHours"));
 
-
         try{
-            if(EmployeeList!=null && !EmployeeList.isEmpty()){
-                for(int i=1; i<=EmployeeList.size(); i++) {
-                    jobPositionTableview.getItems().add((Employee) EmployeeList.getNode(i).data);
+
+            if (EmployeeList != null && !EmployeeList.isEmpty()) {
+                Random random = new Random();
+                for (int i = 1; i <= EmployeeList.size(); i++) {
+                    JobPosition jobPosition = (JobPosition) EmployeeList.getNode(i).data;
+                    double hoursWorked = 40 + (50 - 40) * random.nextDouble();
+                    jobPosition.setTotalHours(hoursWorked);
+                    jobPositionTableview.getItems().add(jobPosition);
                 }
             }
-            //this.EmployeeTableView.setItems(observableList);
-        }catch(ListException ex){
+
+
+        }catch(ListException e){
             alert.setContentText("Employee list is empty");
             alert.showAndWait();
         }
@@ -84,10 +92,12 @@ public class JobPositionController
     @FXML
     void addSortedOnAction(ActionEvent event) {
 
+
     }
 
     @FXML
     void addFirstOnAction(ActionEvent event) {
+
 
     }
 
@@ -225,18 +235,18 @@ public class JobPositionController
 
     private void updateTableView() throws ListException {
 
-        this.jobPositionTableview.getItems().clear(); //clear table
-        this.EmployeeList = util.Utility.getEmployeeList(); //cargo la lista
-        if(EmployeeList!=null && !EmployeeList.isEmpty()){
-
-            for(int i=1; i<=EmployeeList.size(); i++) {
-
-                this.jobPositionTableview.getItems().add((Employee)EmployeeList.getNode(i).data);
-
+        this.jobPositionTableview.getItems().clear();
+        this.EmployeeList = util.Utility.getEmployeeList();
+        if (EmployeeList != null && !EmployeeList.isEmpty()) {
+            Random random = new Random();
+            for (int i = 1; i <= EmployeeList.size(); i++) {
+                JobPosition jobPosition = (JobPosition) EmployeeList.getNode(i).data;
+                double hoursWorked = 40 + (50 - 40) * random.nextDouble();
+                jobPosition.setTotalHours(hoursWorked);
+                this.jobPositionTableview.getItems().add(jobPosition);
             }
-
         }
+    }
 
     }
 
-}

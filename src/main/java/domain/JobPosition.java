@@ -6,13 +6,15 @@ public class JobPosition {
     private int id;
     private String description;
     private double hourlyWage;
+    private double totalHours;
     private static int autoId;
 
     //Constructor 1
-    public JobPosition(int id, String description, double hourlyWage) {
+    public JobPosition(int id, String description, double hourlyWage , double totalHours) {
         this.id = id;
         this.description = description;
         this.hourlyWage = hourlyWage;
+        this.totalHours = totalHours;
     }
 
     //Constructor 2
@@ -71,13 +73,19 @@ public class JobPosition {
         return n * hourlyWage;
     }
 
+    public double getTotalHours() {
+        return totalHours;
+    }
+
+    public void setTotalHours(double totalHours) {
+        this.totalHours = totalHours;
+    }
+
     @Override
     public String toString() {
 
         return  "(ID)"+id+"/(Job Position)"+description +" /(HourlyWage)"+ hourlyWage;
 
     }
-
-
 
 }

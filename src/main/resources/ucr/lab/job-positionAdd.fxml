@@ -42,17 +42,17 @@
       </Pane>
       <Pane layoutY="286.0" prefHeight="124.0" prefWidth="606.0" style="-fx-background-color: #5de297;">
          <children>
-            <Button fx:id="#add" layoutX="34.0" layoutY="33.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="44.0" prefWidth="100.0" text="Add">
+            <Button fx:id="add" layoutX="34.0" layoutY="33.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="44.0" prefWidth="100.0" text="Add">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="#CleanButton" layoutX="172.0" layoutY="33.0" mnemonicParsing="false" onAction="#cleanOnAction" prefHeight="44.0" prefWidth="100.0" text="Clean">
+            <Button fx:id="cleanButton" layoutX="172.0" layoutY="33.0" mnemonicParsing="false" onAction="#cleanOnAction" prefHeight="44.0" prefWidth="100.0" text="Clean">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="#closeButton" layoutX="310.0" layoutY="33.0" mnemonicParsing="false" onAction="#closeOnAction" prefHeight="44.0" prefWidth="100.0" text="Close">
+            <Button fx:id="closeButton" layoutX="310.0" layoutY="33.0" mnemonicParsing="false" onAction="#closeOnAction" prefHeight="44.0" prefWidth="100.0" text="Close">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
