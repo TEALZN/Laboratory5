@@ -11,14 +11,15 @@ public class FXUtility {
 
     public static void loadPage(String className, String page, BorderPane bp) {
         try {
-            Class cl = Class.forName(className);
-            FXMLLoader fxmlLoader = new FXMLLoader(cl.getResource(page));
-            cl.getResource("bp");
+            Class<?> cl = Class.forName(className);
+            FXMLLoader fxmlLoader = new FXMLLoader(cl.getResource(page + ".fxml")); // <-- le agregamos ".fxml"
             bp.setCenter(fxmlLoader.load());
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace(); // ¡No tires la excepción sin verla!
             throw new RuntimeException(e);
         }
     }
+
 
     public static Alert alert(String title, String header){
         Alert myalert = new Alert(Alert.AlertType.NONE);

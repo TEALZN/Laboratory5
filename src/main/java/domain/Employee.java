@@ -21,14 +21,17 @@ import java.util.Date;
         }
 
         public Employee(int id) {
+
             this.id = id;
         }
 
         public int getId() {
+
             return id;
         }
 
         public void setId(int id) {
+
             this.id = id;
         }
 
@@ -37,22 +40,27 @@ import java.util.Date;
         }
 
         public void setLastName(String lastName) {
+
             this.lastName = lastName;
         }
 
         public String getFirstName() {
+
             return firstName;
         }
 
         public void setFirstName(String firstName) {
+
             this.firstName = firstName;
         }
 
         public String getTitle() {
+
             return title;
         }
 
         public void setTitle(String title) {
+
             this.title = title;
         }
 
@@ -74,6 +82,7 @@ import java.util.Date;
         }
 
         public int getAge(){
+
             return getAge(this.birthday);
         }
 
